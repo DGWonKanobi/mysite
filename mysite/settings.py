@@ -14,6 +14,10 @@ from pathlib import Path
 import os
 from dotenv import  load_dotenv
 load_dotenv()
+import psycopg2
+import dj_database_url
+DATABASE_URL = os.getenv("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL, sslmode="require", port=5432)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,10 +85,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 MONGO_URI = os.getenv('MONOGO_URI')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite',
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 # Password validation
