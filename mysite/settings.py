@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        "DIRS": [BASE_DIR / "templates"],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-MONGO_URI = os.getenv('MONOGO_URI')
+# MONGO_URI = os.getenv('MONOGO_URI')
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
