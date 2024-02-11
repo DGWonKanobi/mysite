@@ -46,10 +46,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'debug_toolbar',
     'django.contrib.staticfiles',
 ]
 
+STATIC_URL = "static/"
+
+
+INTERNAL_IPS = [
+     "127.0.0.1",
+  ]
+
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,8 +73,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        "DIRS": [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / "templates"],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -83,7 +92,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# MONGO_URI = os.getenv('MONOGO_URI')
+MONGO_URI = os.getenv('MONOGO_URI')
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
