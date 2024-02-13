@@ -49,3 +49,27 @@ class Choice(models.Model):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+
+
+
+
+class Artist(models.Model):
+  name = models.CharField(max_length=100)
+
+  def __str__(self):
+    return self.name
+
+class Album(models.Model):
+  title = models.CharField(max_length=100)
+  artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return self.title
+
+class Song(models.Model):
+  title = models.CharField(max_length=100)
+  album = models.ForeignKey(Album, on_delete=models.CASCADE)
+  artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return self.title
