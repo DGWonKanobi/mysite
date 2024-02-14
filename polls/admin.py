@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Choice, Question
+from .models import Choice, Question, Song, Album, Artist
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -21,3 +21,6 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 
 admin.site.register(Choice)
+admin.site.register(Song)
+admin.site.register(Album)
+admin.site.register(Artist)

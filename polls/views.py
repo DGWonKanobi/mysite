@@ -27,11 +27,11 @@ def contact_view(request):
                 recipients.append(sender)
 
             send_mail(subject, message, sender, recipients)
-            return HttpResponseRedirect("/thanks/")
+            return HttpResponseRedirect("/admin/")
     else:
         form = ContactForm()
     
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'forms/form_snippet.html', {'form': form})
 
 # Create your views here.
 # views = routes
